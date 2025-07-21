@@ -1,16 +1,17 @@
+use serde::{Deserialize, Serialize};
 
-
-struct General {
-    name: String,
-    author: Option<String>,
-    version: String,
-    cursor: Cursor,
-    slider: Slider,
-    animation_framerate: i8,
-    hit_circle_overlay_above_number: bool, 
-    layered_hit_sounds: bool,
-    combo_burst: ComboBurst,
-    spinner: Spinner,
+#[derive(Debug, Serialize, Deserialize)]
+pub struct General {
+    pub name: String,
+    pub author: Option<String>,
+    pub version: String,
+    pub cursor: Cursor,
+    pub slider: Slider,
+    pub animation_framerate: i8,
+    pub hit_circle_overlay_above_number: bool, 
+    pub layered_hit_sounds: bool,
+    pub combo_burst: ComboBurst,
+    pub spinner: Spinner,
 }
 
 impl Default for General {
@@ -31,10 +32,11 @@ impl Default for General {
     }
 }
 
-struct ComboBurst
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ComboBurst
 {
-    burst_random: bool, // 0 = no, 1 = yes
-    custom_burst_sounds: Option<u16>,
+    pub burst_random: bool, // 0 = no, 1 = yes
+    pub custom_burst_sounds: Option<u16>,
 }
 impl Default for ComboBurst {
     fn default() -> Self {
@@ -44,11 +46,13 @@ impl Default for ComboBurst {
         }
     }
 }
-struct Cursor {
-    centre: bool,
-    expand: bool,
-    rotate: bool,
-    trail_rotate: bool,
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Cursor {
+    pub centre: bool,
+    pub expand: bool,
+    pub rotate: bool,
+    pub trail_rotate: bool,
 }
 
 impl Default for Cursor {
@@ -62,10 +66,11 @@ impl Default for Cursor {
     }
 }
 
-struct Slider
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Slider
 {
-    ball_flip: bool,
-    ball_tint: bool,
+    pub ball_flip: bool,
+    pub ball_tint: bool,
 }
 
 impl Default for Slider {
@@ -77,11 +82,12 @@ impl Default for Slider {
     }
 }
 
-struct Spinner
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Spinner
 {
-    fade_playfield: bool,
-    frequency_modulate: bool,
-    no_blink: bool,
+    pub fade_playfield: bool,
+    pub frequency_modulate: bool,
+    pub no_blink: bool,
 }
 
 impl Default for Spinner {

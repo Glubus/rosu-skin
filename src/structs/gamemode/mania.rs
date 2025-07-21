@@ -2,7 +2,7 @@ use crate::structs::common::{Colour, ColourAlpha};
 use std::path::PathBuf;
 
 struct Mania{
-
+    key: [Option<Common>; 18],	
 }
 
 // Configuration des colonnes et de leur disposition

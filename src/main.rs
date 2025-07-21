@@ -1,4 +1,10 @@
 mod structs;
+mod decode;
+
+use std::path::PathBuf;
+use structs::general::General;
+
 fn main() {
-    // À compléter : appel du decode sur un fichier ini
+    let general = General::from_path(&PathBuf::from("F:/rosu-memory-lib/rosu-skin/assets/Cantarella.ini"));
+    println!("{:?}", general);
 }
