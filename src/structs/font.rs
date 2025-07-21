@@ -1,13 +1,13 @@
 use std::path::PathBuf;
 
-struct Font
+pub struct Font
 {
-    hit_circle_prefix : PathBuf,
-    hit_circle_overlap : i32, // negative add a gap
-    score_prefix : PathBuf,
-    score_overlap : i32, // negative add a gap
-    combo_prefix : PathBuf,
-    combo_overlap : i32, // negative add a gap
+    pub hit_circle_prefix : PathBuf,
+    pub hit_circle_overlap : i32, // negative add a gap
+    pub score_prefix : PathBuf,
+    pub score_overlap : i32, // negative add a gap
+    pub combo_prefix : PathBuf,
+    pub combo_overlap : i32, // negative add a gap
 }
 
 impl Default for Font {

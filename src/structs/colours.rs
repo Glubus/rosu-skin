@@ -1,15 +1,15 @@
 use crate::structs::common::Colour;
 
-struct Colours
+pub struct Colours
 {
-    combo : Combo,
-    input_overlay_text : Colour,
-    menu_glow: Colour,
-    slider : Slider,
-    song_select_active_text : Colour,
-    song_select_inactive_text : Colour,
-    spinner_background : Colour,
-    star_break_additive : Colour,
+    pub combo : Combo,
+    pub input_overlay_text : Colour,
+    pub menu_glow: Colour,
+    pub slider : Slider,
+    pub song_select_active_text : Colour,
+    pub song_select_inactive_text : Colour,
+    pub spinner_background : Colour,
+    pub star_break_additive : Colour,
 }
 
 impl Default for Colours {
@@ -28,11 +28,11 @@ impl Default for Colours {
     }
 }
 
-struct Slider
+pub struct Slider
 {
-    ball: Colour,
-    border : Colour,
-    track_override : Option<Colour>,
+    pub ball: Colour,
+    pub border : Colour,
+    pub track_override : Option<Colour>,
 }
 
 impl Default for Slider {
@@ -46,16 +46,16 @@ impl Default for Slider {
     }
 }
 
-struct Combo
+pub struct Combo
 {
-    combo1 : Colour,
-    combo2 : Colour,
-    combo3 : Option<Colour>,
-    combo4 : Option<Colour>,
-    combo5 : Option<Colour>,
-    combo6 : Option<Colour>,
-    combo7 : Option<Colour>,
-    combo8 : Option<Colour>,
+    pub combo1 : Colour,
+    pub combo2 : Colour,
+    pub combo3 : Option<Colour>,
+    pub combo4 : Option<Colour>,
+    pub combo5 : Option<Colour>,
+    pub combo6 : Option<Colour>,
+    pub combo7 : Option<Colour>,
+    pub combo8 : Option<Colour>,
 }
 
 impl Default for Combo {
@@ -71,4 +71,5 @@ impl Default for Combo {
             combo8: None,
         }
     }
+
 }
