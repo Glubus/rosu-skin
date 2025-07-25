@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub struct Colour
 {
     pub red : u8,
@@ -6,15 +7,26 @@ pub struct Colour
 }
 impl Colour {
     pub fn from_string(string: &str) -> Self {
-        let colours = string.split(",").collect::<Vec<&str>>();
+        let colours = string
+        .split(',')
+        .map(|s| s.trim().parse::<u8>())
+        .collect::<Result<Vec<_>, _>>()
+        .ok()
+        .unwrap();
+        
+    // if colours.len() != 3 {
+    //     return None;
+    // }
+
         Self {
-            red: colours[0].parse::<u8>().unwrap(),
-            green: colours[1].parse::<u8>().unwrap(),
-            blue: colours[2].parse::<u8>().unwrap(),
+            red: colours[0],
+            green: colours[1],
+            blue: colours[2],
         }
     }
 }
 
+#[derive(Debug)]
 pub struct ColourAlpha
 {
     color: Colour,

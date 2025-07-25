@@ -16,7 +16,8 @@ impl Font {
             font.hit_circle_overlap = hit_circle_overlap.parse::<i32>().unwrap();
         }
         if let Some(score_prefix) = font_section.get("ScorePrefix") {
-            font.score_prefix = PathBuf::from(score_prefix);
+            font.score_prefix = PathBuf::from(score_prefix.replace('\\', "/"));
+            println!("{:?}", font.score_prefix);
         }
         if let Some(score_overlap) = font_section.get("ScoreOverlap") {
             font.score_overlap = score_overlap.parse::<i32>().unwrap();

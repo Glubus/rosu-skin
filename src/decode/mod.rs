@@ -1,3 +1,3 @@
-pub mod general;
-pub mod font;
 pub mod colours;
+pub mod font;
+pub mod general;

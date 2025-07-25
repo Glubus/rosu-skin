@@ -1,2 +1,2 @@
-pub mod mania;
 pub mod ctb;
+pub mod mania;

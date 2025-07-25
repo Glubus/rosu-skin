@@ -1,8 +1,8 @@
 use crate::structs::common::{Colour, ColourAlpha};
 use std::path::PathBuf;
 
-struct Mania{
-    key: [Option<Common>; 18],	
+struct Mania {
+    key: [Option<Common>; 18],
 }
 
 // Configuration des colonnes et de leur disposition
@@ -30,9 +30,9 @@ struct Position {
 // Configuration du style et des animations
 struct Style {
     light_frame_per_second: u8,
-    special_style: u8, // possible value 0,1,2
+    special_style: u8,     // possible value 0,1,2
     combo_burst_style: u8, // possible value 0,1,2
-    note_body_style: u8, // possible value 0,1,2
+    note_body_style: u8,   // possible value 0,1,2
     note_body_style_notes: Vec<u8>,
 }
 
@@ -59,10 +59,10 @@ struct Interface {
 
 // Configuration des couleurs
 struct ColourMania {
-    colour: Vec<Colour>, // column lane colour
-    colour_lighting: Vec<Colour>, // column lane lighting colour
-    colour_column_line: ColourAlpha, // column lane line colour
-    colour_barline: ColourAlpha, // barline colour
+    colour: Vec<Colour>,                // column lane colour
+    colour_lighting: Vec<Colour>,       // column lane lighting colour
+    colour_column_line: ColourAlpha,    // column lane line colour
+    colour_barline: ColourAlpha,        // barline colour
     colour_judgement_line: ColourAlpha, // judgement line colour
     colour_key_warning: Colour,
     colour_hold: ColourAlpha,

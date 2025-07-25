@@ -8,14 +8,13 @@ pub struct General {
     pub cursor: Cursor,
     pub slider: Slider,
     pub animation_framerate: i8,
-    pub hit_circle_overlay_above_number: bool, 
+    pub hit_circle_overlay_above_number: bool,
     pub layered_hit_sounds: bool,
     pub combo_burst: ComboBurst,
     pub spinner: Spinner,
 }
 
 impl Default for General {
-
     fn default() -> Self {
         Self {
             name: String::from("Unknown"),
@@ -33,8 +32,7 @@ impl Default for General {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct ComboBurst
-{
+pub struct ComboBurst {
     pub burst_random: bool, // 0 = no, 1 = yes
     pub custom_burst_sounds: Option<u16>,
 }
@@ -67,8 +65,7 @@ impl Default for Cursor {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Slider
-{
+pub struct Slider {
     pub ball_flip: bool,
     pub ball_tint: bool,
 }
@@ -83,8 +80,7 @@ impl Default for Slider {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Spinner
-{
+pub struct Spinner {
     pub fade_playfield: bool,
     pub frequency_modulate: bool,
     pub no_blink: bool,

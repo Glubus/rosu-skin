@@ -10,7 +10,7 @@ impl General {
         let general_section = conf.section(Some("General")).unwrap();
 
         if let Some(name) = general_section.get("Name") {
-        general.name = general_section.get("Name").unwrap().to_string();
+            general.name = general_section.get("Name").unwrap().to_string();
         }
         if let Some(author) = general_section.get("Author") {
             general.author = Some(author.to_string());
@@ -40,7 +40,8 @@ impl General {
             general.combo_burst.burst_random = combo_burst_random.parse::<i8>().unwrap() == 1;
         }
         if let Some(custom_burst_sounds) = general_section.get("CustomBurstSounds") {
-            general.combo_burst.custom_burst_sounds = Some(custom_burst_sounds.to_string().parse::<u16>().unwrap());
+            general.combo_burst.custom_burst_sounds =
+                Some(custom_burst_sounds.to_string().parse::<u16>().unwrap());
         }
         if let Some(fade_playfield) = general_section.get("FadePlayfield") {
             general.spinner.fade_playfield = fade_playfield.parse::<i8>().unwrap() == 1;
@@ -51,8 +52,11 @@ impl General {
         if let Some(no_blink) = general_section.get("NoBlink") {
             general.spinner.no_blink = no_blink.parse::<i8>().unwrap() == 1;
         }
-        if let Some(hit_circle_overlay_above_number) = general_section.get("HitCircleOverlayAboveNumber") {
-            general.hit_circle_overlay_above_number = hit_circle_overlay_above_number.parse::<i8>().unwrap() == 1;
+        if let Some(hit_circle_overlay_above_number) =
+            general_section.get("HitCircleOverlayAboveNumber")
+        {
+            general.hit_circle_overlay_above_number =
+                hit_circle_overlay_above_number.parse::<i8>().unwrap() == 1;
         }
         if let Some(layered_hit_sounds) = general_section.get("LayeredHitSounds") {
             general.layered_hit_sounds = layered_hit_sounds.parse::<i8>().unwrap() == 1;

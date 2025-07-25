@@ -1,5 +1,5 @@
-pub mod general;
 pub mod colours;
+pub mod common;
 pub mod font;
 pub mod gamemode;
-pub mod common;
+pub mod general;

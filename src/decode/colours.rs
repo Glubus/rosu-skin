@@ -1,7 +1,7 @@
 use crate::structs::colours::Colours;
+use crate::structs::common::Colour;
 use ini::Ini;
 use std::path::PathBuf;
-use crate::structs::common::Colour;
 
 impl Colours {
     pub fn from_path(path: &PathBuf) -> Self {
@@ -35,7 +35,6 @@ impl Colours {
             colours.combo.combo8 = Some(Colour::from_string(combo));
         }
 
-
         if let Some(menu_glow) = colours_section.get("MenuGlow") {
             colours.menu_glow = Colour::from_string(menu_glow);
         }
@@ -67,7 +66,6 @@ impl Colours {
             colours.star_break_additive = Colour::from_string(star_break_additive);
         }
 
-
-       colours
+        colours
     }
 }
