@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <ns name="defaults">
+        <string name="skin_name">Unknown</string>
+        <string name="skin_version">latest</string>
+        <string name="combo1">255,192,0</string>
+        <string name="combo2">0,202,0</string>
+        <string name="combo3">18,124,255</string>
+        <string name="combo4">242,24,57</string>
+        <string name="menu_glow">0,78,155</string>
+        <string name="slider_ball">2,170,255</string>
+        <string name="slider_border">255,255,255</string>
+        <string name="input_overlay_text">0,0,0</string>
+        <string name="song_select_active_text">0,0,0</string>
+        <string name="song_select_inactive_text">255,255,255</string>
+        <string name="spinner_background">100,100,100</string>
+        <string name="star_break_additive">255,182,193</string>
+        <string name="hyper_dash">255,0,0</string>
+        <string name="hit_circle_prefix">default</string>
+        <string name="score_prefix">score</string>
+        <string name="combo_prefix">score</string>
+        <int name="hit_circle_overlap">-2</int>
+        <int name="score_overlap">0</int>
+        <int name="combo_overlap">0</int>
+        <int name="animation_framerate">-1</int>
+        <int name="hit_position">402</int>
+        <int name="light_position">413</int>
+        <int name="column_start">136</int>
+        <int name="column_right">19</int>
+        <int name="barline_height">1</int>
+        <int name="stage_separation">40</int>
+        <int name="special_style">0</int>
+        <int name="combo_burst_style">1</int>
+        <int name="note_body_style">1</int>
+        <bool name="cursor_centre">true</bool>
+        <bool name="cursor_expand">true</bool>
+        <bool name="cursor_rotate">true</bool>
+        <bool name="cursor_trail_rotate">true</bool>
+        <bool name="slider_ball_flip">true</bool>
+        <bool name="slider_ball_tint">false</bool>
+        <bool name="combo_burst_random">false</bool>
+        <bool name="hit_circle_overlay_above_number">true</bool>
+        <bool name="layered_hit_sounds">true</bool>
+        <bool name="spinner_fade_playfield">false</bool>
+        <bool name="spinner_frequency_modulate">true</bool>
+        <bool name="spinner_no_blink">false</bool>
+        <bool name="upside_down">false</bool>
+        <bool name="key_flip_when_upside_down">true</bool>
+        <bool name="note_flip_when_upside_down">true</bool>
+        <bool name="split_stages">false</bool>
+        <bool name="separate_score">true</bool>
+        <bool name="keys_under_notes">false</bool>
+    </ns>
+</resources>
+

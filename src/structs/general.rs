@@ -1,3 +1,4 @@
+use crate::r;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -17,14 +18,14 @@ pub struct General {
 impl Default for General {
     fn default() -> Self {
         Self {
-            name: String::from("Unknown"),
+            name: String::from(r::defaults::SKIN_NAME),
             author: None,
-            version: String::from("latest"),
+            version: String::from(r::defaults::SKIN_VERSION),
             cursor: Cursor::default(),
             slider: Slider::default(),
-            animation_framerate: -1,
-            hit_circle_overlay_above_number: true,
-            layered_hit_sounds: true,
+            animation_framerate: r::defaults::ANIMATION_FRAMERATE as i32,
+            hit_circle_overlay_above_number: r::defaults::HIT_CIRCLE_OVERLAY_ABOVE_NUMBER,
+            layered_hit_sounds: r::defaults::LAYERED_HIT_SOUNDS,
             combo_burst: ComboBurst::default(),
             spinner: Spinner::default(),
         }
@@ -39,7 +40,7 @@ pub struct ComboBurst {
 impl Default for ComboBurst {
     fn default() -> Self {
         Self {
-            burst_random: false,
+            burst_random: r::defaults::COMBO_BURST_RANDOM,
             custom_burst_sounds: Vec::new(),
         }
     }
@@ -56,10 +57,10 @@ pub struct Cursor {
 impl Default for Cursor {
     fn default() -> Self {
         Self {
-            centre: true,
-            expand: true,
-            rotate: true,
-            trail_rotate: true,
+            centre: r::defaults::CURSOR_CENTRE,
+            expand: r::defaults::CURSOR_EXPAND,
+            rotate: r::defaults::CURSOR_ROTATE,
+            trail_rotate: r::defaults::CURSOR_TRAIL_ROTATE,
         }
     }
 }
@@ -73,8 +74,8 @@ pub struct Slider {
 impl Default for Slider {
     fn default() -> Self {
         Self {
-            ball_flip: true,
-            ball_tint: false,
+            ball_flip: r::defaults::SLIDER_BALL_FLIP,
+            ball_tint: r::defaults::SLIDER_BALL_TINT,
         }
     }
 }
@@ -89,9 +90,9 @@ pub struct Spinner {
 impl Default for Spinner {
     fn default() -> Self {
         Self {
-            fade_playfield: false,
-            frequency_modulate: true,
-            no_blink: false,
+            fade_playfield: r::defaults::SPINNER_FADE_PLAYFIELD,
+            frequency_modulate: r::defaults::SPINNER_FREQUENCY_MODULATE,
+            no_blink: r::defaults::SPINNER_NO_BLINK,
         }
     }
 }

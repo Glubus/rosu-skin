@@ -1,3 +1,4 @@
+use crate::r;
 use std::path::PathBuf;
 
 #[derive(Debug)]
@@ -13,12 +14,12 @@ pub struct Font {
 impl Default for Font {
     fn default() -> Self {
         Self {
-            hit_circle_prefix: PathBuf::from("default"),
-            hit_circle_overlap: -2,
-            score_prefix: PathBuf::from("score"),
-            score_overlap: 0,
-            combo_prefix: PathBuf::from("score"),
-            combo_overlap: 0,
+            hit_circle_prefix: PathBuf::from(r::defaults::HIT_CIRCLE_PREFIX),
+            hit_circle_overlap: r::defaults::HIT_CIRCLE_OVERLAP as i32,
+            score_prefix: PathBuf::from(r::defaults::SCORE_PREFIX),
+            score_overlap: r::defaults::SCORE_OVERLAP as i32,
+            combo_prefix: PathBuf::from(r::defaults::COMBO_PREFIX),
+            combo_overlap: r::defaults::COMBO_OVERLAP as i32,
         }
     }
 }

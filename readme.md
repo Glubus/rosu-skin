@@ -120,6 +120,7 @@ The parser uses graceful error handling:
 
 - `rust-ini`: For basic INI file parsing (used for non-Mania sections)
 - `serde`: For serialization support (optional, for future JSON export)
+- `r-resources`: For compile-time resource generation (constants and defaults)
 
 ## License
 

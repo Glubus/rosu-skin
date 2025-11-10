@@ -1,3 +1,4 @@
+use crate::r;
 use crate::structs::common::Colour;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -10,11 +11,8 @@ pub struct CatchTheBeat {
 impl Default for CatchTheBeat {
     fn default() -> Self {
         Self {
-            hyper_dash: Colour {
-                red: 255,
-                green: 0,
-                blue: 0,
-            },
+            hyper_dash: Colour::from_string_rgba(r::defaults::HYPER_DASH)
+                .unwrap_or(Colour { red: 255, green: 0, blue: 0 }),
             hyper_dash_fruit: None, // defaults to hyper_dash if not set
             hyper_dash_after_image: None, // defaults to hyper_dash if not set
         }

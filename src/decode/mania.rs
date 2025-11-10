@@ -1,5 +1,6 @@
 use crate::structs::gamemode::mania::*;
 use crate::structs::common::{Colour, ColourAlpha};
+use crate::r;
 use std::collections::HashMap;
 use std::fs;
 use std::path::PathBuf;
@@ -44,7 +45,7 @@ fn parse_mania_sections(path: &PathBuf) -> HashMap<u8, HashMap<String, String>> 
         // Check for section header
         if line.starts_with('[') && line.ends_with(']') {
             let section_name = &line[1..line.len() - 1];
-            in_mania_section = section_name == "Mania";
+            in_mania_section = section_name == r::sections::MANIA;
             current_section = None;
             continue;
         }
@@ -63,7 +64,7 @@ fn parse_mania_sections(path: &PathBuf) -> HashMap<u8, HashMap<String, String>> 
             let key = line[..colon_pos].trim();
             let value = line[colon_pos + 1..].trim();
 
-            if key == "Keys" {
+            if key == r::mania_keys::KEYS {
                 if let Ok(keys) = value.parse::<u8>() {
                     current_section = Some(keys);
                     key_sections.entry(keys).or_insert_with(HashMap::new);
@@ -83,37 +84,37 @@ fn parse_mania_sections(path: &PathBuf) -> HashMap<u8, HashMap<String, String>> 
 /// Parse column-related settings
 fn parse_column_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
     match key {
-        "ColumnStart" => {
+        key if key == r::mania_keys::COLUMN_START => {
             if let Ok(v) = value.parse::<f32>() {
                 config.columns.column_start = v;
             }
         }
-        "ColumnRight" => {
+        key if key == r::mania_keys::COLUMN_RIGHT => {
             if let Ok(v) = value.parse::<f32>() {
                 config.columns.column_right = v;
             }
         }
-        "ColumnSpacing" => {
+        key if key == r::mania_keys::COLUMN_SPACING => {
             config.columns.column_spacing = parse_comma_list_f32(value);
         }
-        "ColumnWidth" => {
+        key if key == r::mania_keys::COLUMN_WIDTH => {
             config.columns.column_width = parse_comma_list_f32(value);
         }
-        "ColumnLineWidth" => {
+        key if key == r::mania_keys::COLUMN_LINE_WIDTH => {
             config.columns.column_line_width = parse_comma_list_f32(value);
         }
-        "BarlineHeight" => {
+        key if key == r::mania_keys::BARLINE_HEIGHT => {
             if let Ok(v) = value.parse::<f32>() {
                 config.columns.barline_height = v;
             }
         }
-        "LightingNWidth" => {
+        key if key == r::mania_keys::LIGHTING_N_WIDTH => {
             config.columns.lighting_n_width = parse_comma_list_f32(value);
         }
-        "LightingLWidth" => {
+        key if key == r::mania_keys::LIGHTING_L_WIDTH => {
             config.columns.lighting_l_width = parse_comma_list_f32(value);
         }
-        "WidthForNoteHeightScale" => {
+        key if key == r::mania_keys::WIDTH_FOR_NOTE_HEIGHT_SCALE => {
             if let Ok(v) = value.parse::<f32>() {
                 config.columns.width_for_note_height_scale = Some(v);
             }
@@ -125,27 +126,27 @@ fn parse_column_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
 /// Parse position-related settings
 fn parse_position_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
     match key {
-        "HitPosition" => {
+        key if key == r::mania_keys::HIT_POSITION => {
             if let Ok(v) = value.parse::<i32>() {
                 config.positions.hit_position = v;
             }
         }
-        "LightPosition" => {
+        key if key == r::mania_keys::LIGHT_POSITION => {
             if let Ok(v) = value.parse::<i32>() {
                 config.positions.light_position = v;
             }
         }
-        "ScorePosition" => {
+        key if key == r::mania_keys::SCORE_POSITION => {
             if let Ok(v) = value.parse::<i32>() {
                 config.positions.score_position = Some(v);
             }
         }
-        "ComboPosition" => {
+        key if key == r::mania_keys::COMBO_POSITION => {
             if let Ok(v) = value.parse::<i32>() {
                 config.positions.combo_position = Some(v);
             }
         }
-        "JudgementLine" => {
+        key if key == r::mania_keys::JUDGEMENT_LINE => {
             config.positions.judgement_line = parse_bool(value);
         }
         _ => {}
@@ -155,17 +156,17 @@ fn parse_position_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) 
 /// Parse style-related settings
 fn parse_style_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
     match key {
-        "LightFramePerSecond" => {
+        key if key == r::mania_keys::LIGHT_FRAME_PER_SECOND => {
             if let Ok(v) = value.parse::<i32>() {
                 config.style.light_frame_per_second = Some(v);
             }
         }
-        "SpecialStyle" => {
+        key if key == r::mania_keys::SPECIAL_STYLE => {
             if let Some(v) = parse_u8_clamped(value, 2) {
                 config.style.special_style = v;
             }
         }
-        "ComboBurstStyle" => {
+        key if key == r::mania_keys::COMBO_BURST_STYLE => {
             if let Some(v) = parse_u8_clamped(value, 2) {
                 config.style.combo_burst_style = v;
             } else {
@@ -178,13 +179,13 @@ fn parse_style_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
                 }
             }
         }
-        "NoteBodyStyle" => {
+        key if key == r::mania_keys::NOTE_BODY_STYLE => {
             if let Some(v) = parse_u8_clamped(value, 2) {
                 config.style.note_body_style = v;
             }
         }
-        key if key.starts_with("NoteBodyStyle") && key.len() > 13 => {
-            if let Some(col_str) = key.strip_prefix("NoteBodyStyle") {
+        key if key.starts_with(r::prefixes::NOTE_BODY_STYLE) && key.len() > r::prefixes::NOTE_BODY_STYLE.len() => {
+            if let Some(col_str) = key.strip_prefix(r::prefixes::NOTE_BODY_STYLE) {
                 if let Some(idx) = parse_column_index(col_str) {
                     if let Some(v) = parse_u8_clamped(value, 2) {
                         config.style.note_body_style_per_column.insert(idx, v);
@@ -199,14 +200,14 @@ fn parse_style_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
 /// Parse upside-down related settings
 fn parse_upside_down_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
     match key {
-        "UpsideDown" => {
+        key if key == r::mania_keys::UPSIDE_DOWN => {
             config.upside_down.upside_down = parse_bool(value).unwrap_or(false);
         }
-        "KeyFlipWhenUpsideDown" => {
+        key if key == r::mania_keys::KEY_FLIP_WHEN_UPSIDE_DOWN => {
             config.upside_down.key_flip_when_upside_down = parse_bool(value).unwrap_or(true);
         }
-        key if key.starts_with("KeyFlipWhenUpsideDown") => {
-            if let Some(suffix) = key.strip_prefix("KeyFlipWhenUpsideDown") {
+        key if key.starts_with(r::prefixes::KEY_FLIP_WHEN_UPSIDE_DOWN) => {
+            if let Some(suffix) = key.strip_prefix(r::prefixes::KEY_FLIP_WHEN_UPSIDE_DOWN) {
                 if suffix.is_empty() {
                     // Already handled above
                 } else if suffix == "D" {
@@ -228,11 +229,11 @@ fn parse_upside_down_settings(key: &str, value: &str, config: &mut ManiaKeyConfi
                 }
             }
         }
-        "NoteFlipWhenUpsideDown" => {
+        key if key == r::mania_keys::NOTE_FLIP_WHEN_UPSIDE_DOWN => {
             config.upside_down.note_flip_when_upside_down = parse_bool(value).unwrap_or(true);
         }
-        key if key.starts_with("NoteFlipWhenUpsideDown") => {
-            if let Some(suffix) = key.strip_prefix("NoteFlipWhenUpsideDown") {
+        key if key.starts_with(r::prefixes::NOTE_FLIP_WHEN_UPSIDE_DOWN) => {
+            if let Some(suffix) = key.strip_prefix(r::prefixes::NOTE_FLIP_WHEN_UPSIDE_DOWN) {
                 if suffix.is_empty() {
                     // Already handled above
                 } else if suffix.ends_with("H") {
@@ -277,18 +278,18 @@ fn parse_upside_down_settings(key: &str, value: &str, config: &mut ManiaKeyConfi
 /// Parse interface-related settings
 fn parse_interface_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
     match key {
-        "SplitStages" => {
+        key if key == r::mania_keys::SPLIT_STAGES => {
             config.interface.split_stages = parse_bool(value);
         }
-        "StageSeparation" => {
+        key if key == r::mania_keys::STAGE_SEPARATION => {
             if let Ok(v) = value.parse::<f32>() {
                 config.interface.stage_separation = v;
             }
         }
-        "SeparateScore" => {
+        key if key == r::mania_keys::SEPARATE_SCORE => {
             config.interface.separate_score = parse_bool(value).unwrap_or(true);
         }
-        "KeysUnderNotes" => {
+        key if key == r::mania_keys::KEYS_UNDER_NOTES => {
             config.interface.keys_under_notes = parse_bool(value).unwrap_or(false);
         }
         _ => {}
@@ -298,38 +299,38 @@ fn parse_interface_settings(key: &str, value: &str, config: &mut ManiaKeyConfig)
 /// Parse colour-related settings
 fn parse_colour_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
     match key {
-        "ColourColumnLine" => {
+        key if key == r::mania_keys::COLOUR_COLUMN_LINE => {
             if let Some(col) = ColourAlpha::from_string(value) {
                 config.colours.colour_column_line = col;
             }
         }
-        "ColourBarline" => {
+        key if key == r::mania_keys::COLOUR_BARLINE => {
             if let Some(col) = ColourAlpha::from_string(value) {
                 config.colours.colour_barline = col;
             }
         }
-        "ColourJudgementLine" => {
+        key if key == r::mania_keys::COLOUR_JUDGEMENT_LINE => {
             if let Some(col) = Colour::from_string_rgba(value) {
                 config.colours.colour_judgement_line = col;
             }
         }
-        "ColourKeyWarning" => {
+        key if key == r::mania_keys::COLOUR_KEY_WARNING => {
             if let Some(col) = Colour::from_string_rgba(value) {
                 config.colours.colour_key_warning = col;
             }
         }
-        "ColourHold" => {
+        key if key == r::mania_keys::COLOUR_HOLD => {
             if let Some(col) = ColourAlpha::from_string(value) {
                 config.colours.colour_hold = col;
             }
         }
-        "ColourBreak" => {
+        key if key == r::mania_keys::COLOUR_BREAK => {
             if let Some(col) = Colour::from_string_rgba(value) {
                 config.colours.colour_break = col;
             }
         }
-        key if key.starts_with("Colour") && key.len() > 6 => {
-            if let Some(col_str) = key.strip_prefix("Colour") {
+        key if key.starts_with(r::prefixes::COLOUR) && key.len() > r::prefixes::COLOUR.len() => {
+            if let Some(col_str) = key.strip_prefix(r::prefixes::COLOUR) {
                 // Skip already handled keys
                 if col_str == "ColumnLine"
                     || col_str == "Barline"
@@ -364,19 +365,19 @@ fn parse_colour_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
 
 /// Parse key image settings
 fn parse_key_image_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
-    if !key.starts_with("KeyImage") {
+    if !key.starts_with(r::prefixes::KEY_IMAGE) {
         return;
     }
 
-    if key == "KeyImage" || key == "KeyImageD" {
+    if key == r::prefixes::KEY_IMAGE || key == r::prefixes::KEY_IMAGE_D {
         // Global, not supported per spec
         return;
     }
 
-    if let Some(suffix) = key.strip_prefix("KeyImage") {
-        if suffix.ends_with("D") {
-            // KeyImage#D (column-specific pressed key, 1-indexed)
-            if let Some(col_str) = suffix.strip_suffix("D") {
+    if let Some(suffix) = key.strip_prefix(r::prefixes::KEY_IMAGE) {
+            if suffix.ends_with("D") {
+                // KeyImage#D (column-specific pressed key, 1-indexed)
+                if let Some(col_str) = suffix.strip_suffix("D") {
                 if let Some(idx) = parse_column_index(col_str) {
                     config.key_images.key_image_d_per_column.insert(idx, PathBuf::from(value));
                 }
@@ -390,16 +391,16 @@ fn parse_key_image_settings(key: &str, value: &str, config: &mut ManiaKeyConfig)
 
 /// Parse note image settings
 fn parse_note_image_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
-    if !key.starts_with("NoteImage") {
+    if !key.starts_with(r::prefixes::NOTE_IMAGE) {
         return;
     }
 
-    if key == "NoteImage" || key == "NoteImageH" || key == "NoteImageL" || key == "NoteImageT" {
+    if key == r::prefixes::NOTE_IMAGE || key == r::prefixes::NOTE_IMAGE_H || key == r::prefixes::NOTE_IMAGE_L || key == r::prefixes::NOTE_IMAGE_T {
         // Global, not supported
         return;
     }
 
-    if let Some(suffix) = key.strip_prefix("NoteImage") {
+    if let Some(suffix) = key.strip_prefix(r::prefixes::NOTE_IMAGE) {
         if suffix.ends_with("H") {
             // NoteImage#H (column-specific head, 1-indexed)
             if let Some(col_str) = suffix.strip_suffix("H") {
@@ -431,11 +432,11 @@ fn parse_note_image_settings(key: &str, value: &str, config: &mut ManiaKeyConfig
 /// Parse stage image settings
 fn parse_stage_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
     match key {
-        "StageLeft" => config.stage.stage_left = Some(PathBuf::from(value)),
-        "StageRight" => config.stage.stage_right = Some(PathBuf::from(value)),
-        "StageBottom" => config.stage.stage_bottom = Some(PathBuf::from(value)),
-        "StageHint" => config.stage.stage_hint = Some(PathBuf::from(value)),
-        "StageLight" => config.stage.stage_light = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::STAGE_LEFT => config.stage.stage_left = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::STAGE_RIGHT => config.stage.stage_right = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::STAGE_BOTTOM => config.stage.stage_bottom = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::STAGE_HINT => config.stage.stage_hint = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::STAGE_LIGHT => config.stage.stage_light = Some(PathBuf::from(value)),
         _ => {}
     }
 }
@@ -443,9 +444,9 @@ fn parse_stage_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
 /// Parse visual effects settings
 fn parse_visual_effects_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
     match key {
-        "LightingN" => config.visual_effects.lighting_n = Some(PathBuf::from(value)),
-        "LightingL" => config.visual_effects.lighting_l = Some(PathBuf::from(value)),
-        "WarningArrow" => config.visual_effects.warning_arrow = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::LIGHTING_N => config.visual_effects.lighting_n = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::LIGHTING_L => config.visual_effects.lighting_l = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::WARNING_ARROW => config.visual_effects.warning_arrow = Some(PathBuf::from(value)),
         _ => {}
     }
 }
@@ -453,12 +454,12 @@ fn parse_visual_effects_settings(key: &str, value: &str, config: &mut ManiaKeyCo
 /// Parse hit effect settings
 fn parse_hit_effect_settings(key: &str, value: &str, config: &mut ManiaKeyConfig) {
     match key {
-        "Hit0" => config.hit_effects.hit0 = Some(PathBuf::from(value)),
-        "Hit50" => config.hit_effects.hit50 = Some(PathBuf::from(value)),
-        "Hit100" => config.hit_effects.hit100 = Some(PathBuf::from(value)),
-        "Hit200" => config.hit_effects.hit200 = Some(PathBuf::from(value)),
-        "Hit300" => config.hit_effects.hit300 = Some(PathBuf::from(value)),
-        "Hit300g" => config.hit_effects.hit300g = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::HIT0 => config.hit_effects.hit0 = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::HIT50 => config.hit_effects.hit50 = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::HIT100 => config.hit_effects.hit100 = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::HIT200 => config.hit_effects.hit200 = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::HIT300 => config.hit_effects.hit300 = Some(PathBuf::from(value)),
+        key if key == r::mania_keys::HIT300G => config.hit_effects.hit300g = Some(PathBuf::from(value)),
         _ => {}
     }
 }
@@ -466,7 +467,7 @@ fn parse_hit_effect_settings(key: &str, value: &str, config: &mut ManiaKeyConfig
 /// Parse a single property into the config
 fn parse_property(key: &str, value: &str, config: &mut ManiaKeyConfig) {
     // Skip Keys as it's already handled
-    if key == "Keys" {
+    if key == r::mania_keys::KEYS {
         if let Ok(k) = value.parse::<u8>() {
             config.keys = k;
         }

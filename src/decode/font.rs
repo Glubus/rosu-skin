@@ -1,4 +1,5 @@
 use crate::structs::font::Font;
+use crate::r;
 use ini::Ini;
 use std::path::PathBuf;
 
@@ -11,36 +12,36 @@ impl Font {
             Err(_) => return font,
         };
 
-        let font_section = match conf.section(Some("Fonts")) {
+        let font_section = match conf.section(Some(r::sections::FONTS)) {
             Some(s) => s,
             None => return font,
         };
 
-        if let Some(hit_circle_prefix) = font_section.get("HitCirclePrefix") {
+        if let Some(hit_circle_prefix) = font_section.get(r::fonts_keys::HIT_CIRCLE_PREFIX) {
             font.hit_circle_prefix = PathBuf::from(hit_circle_prefix);
         }
 
-        if let Some(hit_circle_overlap) = font_section.get("HitCircleOverlap") {
+        if let Some(hit_circle_overlap) = font_section.get(r::fonts_keys::HIT_CIRCLE_OVERLAP) {
             if let Ok(val) = hit_circle_overlap.parse::<i32>() {
                 font.hit_circle_overlap = val;
             }
         }
 
-        if let Some(score_prefix) = font_section.get("ScorePrefix") {
+        if let Some(score_prefix) = font_section.get(r::fonts_keys::SCORE_PREFIX) {
             font.score_prefix = PathBuf::from(score_prefix.replace('\\', "/"));
         }
 
-        if let Some(score_overlap) = font_section.get("ScoreOverlap") {
+        if let Some(score_overlap) = font_section.get(r::fonts_keys::SCORE_OVERLAP) {
             if let Ok(val) = score_overlap.parse::<i32>() {
                 font.score_overlap = val;
             }
         }
 
-        if let Some(combo_prefix) = font_section.get("ComboPrefix") {
+        if let Some(combo_prefix) = font_section.get(r::fonts_keys::COMBO_PREFIX) {
             font.combo_prefix = PathBuf::from(combo_prefix);
         }
 
-        if let Some(combo_overlap) = font_section.get("ComboOverlap") {
+        if let Some(combo_overlap) = font_section.get(r::fonts_keys::COMBO_OVERLAP) {
             if let Ok(val) = combo_overlap.parse::<i32>() {
                 font.combo_overlap = val;
             }

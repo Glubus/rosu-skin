@@ -1,12 +1,5 @@
-mod decode;
-mod structs;
-
+use rosu_skin::*;
 use std::path::PathBuf;
-use structs::colours::Colours;
-use structs::font::Font;
-use structs::general::General;
-use structs::gamemode::ctb::CatchTheBeat;
-use structs::gamemode::mania::Mania;
 
 fn main() {
     // Use relative path from project root

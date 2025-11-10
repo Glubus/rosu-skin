@@ -1,3 +1,4 @@
+use crate::r;
 use crate::structs::common::{Colour, ColourAlpha};
 use std::collections::HashMap;
 use std::path::PathBuf;
@@ -71,12 +72,12 @@ pub struct Column {
 impl Default for Column {
     fn default() -> Self {
         Self {
-            column_start: 136.0,
-            column_right: 19.0,
+            column_start: crate::int::defaults::COLUMN_START as f32,
+            column_right: crate::int::defaults::COLUMN_RIGHT as f32,
             column_spacing: Vec::new(),
             column_width: Vec::new(),
             column_line_width: Vec::new(),
-            barline_height: 1.2,
+            barline_height: crate::int::defaults::BARLINE_HEIGHT as f32,
             lighting_n_width: Vec::new(),
             lighting_l_width: Vec::new(),
             width_for_note_height_scale: None,
@@ -97,8 +98,8 @@ pub struct Position {
 impl Default for Position {
     fn default() -> Self {
         Self {
-            hit_position: 402,
-            light_position: 413,
+            hit_position: r::defaults::HIT_POSITION as i32,
+            light_position: r::defaults::LIGHT_POSITION as i32,
             score_position: None,
             combo_position: None,
             judgement_line: None,
@@ -120,9 +121,9 @@ impl Default for Style {
     fn default() -> Self {
         Self {
             light_frame_per_second: None,
-            special_style: 0,
-            combo_burst_style: 1,
-            note_body_style: 1,
+            special_style: crate::int::defaults::SPECIAL_STYLE as u8,
+            combo_burst_style: crate::int::defaults::COMBO_BURST_STYLE as u8,
+            note_body_style: crate::int::defaults::NOTE_BODY_STYLE as u8,
             note_body_style_per_column: HashMap::new(),
         }
     }
@@ -145,11 +146,11 @@ pub struct UpsideDown {
 impl Default for UpsideDown {
     fn default() -> Self {
         Self {
-            upside_down: false,
-            key_flip_when_upside_down: true,
+            upside_down: r::defaults::UPSIDE_DOWN,
+            key_flip_when_upside_down: r::defaults::KEY_FLIP_WHEN_UPSIDE_DOWN,
             key_flip_when_upside_down_per_column: HashMap::new(),
             key_flip_when_upside_down_d_per_column: HashMap::new(),
-            note_flip_when_upside_down: true,
+            note_flip_when_upside_down: r::defaults::NOTE_FLIP_WHEN_UPSIDE_DOWN,
             note_flip_when_upside_down_per_column: HashMap::new(),
             note_flip_when_upside_down_h_per_column: HashMap::new(),
             note_flip_when_upside_down_l_per_column: HashMap::new(),
@@ -171,9 +172,9 @@ impl Default for Interface {
     fn default() -> Self {
         Self {
             split_stages: None,
-            stage_separation: 40.0,
-            separate_score: true,
-            keys_under_notes: false,
+            stage_separation: crate::int::defaults::STAGE_SEPARATION as f32,
+            separate_score: r::defaults::SEPARATE_SCORE,
+            keys_under_notes: r::defaults::KEYS_UNDER_NOTES,
         }
     }
 }

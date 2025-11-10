@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <ns name="sections">
+        <string name="general">General</string>
+        <string name="colours">Colours</string>
+        <string name="fonts">Fonts</string>
+        <string name="catch_the_beat">CatchTheBeat</string>
+        <string name="mania">Mania</string>
+    </ns>
+    
+    <ns name="general_keys">
+        <string name="name">Name</string>
+        <string name="author">Author</string>
+        <string name="version">Version</string>
+        <string name="animation_framerate">AnimationFramerate</string>
+        <string name="allow_slider_ball_tint">AllowSliderBallTint</string>
+        <string name="combo_burst_random">ComboBurstRandom</string>
+        <string name="cursor_centre">CursorCentre</string>
+        <string name="cursor_expand">CursorExpand</string>
+        <string name="cursor_rotate">CursorRotate</string>
+        <string name="cursor_trail_rotate">CursorTrailRotate</string>
+        <string name="custom_combo_burst_sounds">CustomComboBurstSounds</string>
+        <string name="hit_circle_overlay_above_number">HitCircleOverlayAboveNumber</string>
+        <string name="hit_circle_overlay_above_numer">HitCircleOverlayAboveNumer</string>
+        <string name="layered_hit_sounds">LayeredHitSounds</string>
+        <string name="slider_ball_flip">SliderBallFlip</string>
+        <string name="spinner_fade_playfield">SpinnerFadePlayfield</string>
+        <string name="spinner_frequency_modulate">SpinnerFrequencyModulate</string>
+        <string name="spinner_no_blink">SpinnerNoBlink</string>
+    </ns>
+    
+    <ns name="colours_keys">
+        <string name="combo1">Combo1</string>
+        <string name="combo2">Combo2</string>
+        <string name="combo3">Combo3</string>
+        <string name="combo4">Combo4</string>
+        <string name="combo5">Combo5</string>
+        <string name="combo6">Combo6</string>
+        <string name="combo7">Combo7</string>
+        <string name="combo8">Combo8</string>
+        <string name="input_overlay_text">InputOverlayText</string>
+        <string name="menu_glow">MenuGlow</string>
+        <string name="slider_ball">SliderBall</string>
+        <string name="slider_border">SliderBorder</string>
+        <string name="slider_track_override">SliderTrackOverride</string>
+        <string name="song_select_active_text">SongSelectActiveText</string>
+        <string name="song_select_inactive_text">SongSelectInactiveText</string>
+        <string name="spinner_background">SpinnerBackground</string>
+        <string name="star_break_additive">StarBreakAdditive</string>
+    </ns>
+    
+    <ns name="fonts_keys">
+        <string name="hit_circle_prefix">HitCirclePrefix</string>
+        <string name="hit_circle_overlap">HitCircleOverlap</string>
+        <string name="score_prefix">ScorePrefix</string>
+        <string name="score_overlap">ScoreOverlap</string>
+        <string name="combo_prefix">ComboPrefix</string>
+        <string name="combo_overlap">ComboOverlap</string>
+    </ns>
+    
+    <ns name="ctb_keys">
+        <string name="hyper_dash">HyperDash</string>
+        <string name="hyper_dash_fruit">HyperDashFruit</string>
+        <string name="hyper_dash_after_image">HyperDashAfterImage</string>
+    </ns>
+    
+    <ns name="mania_keys">
+        <string name="keys">Keys</string>
+        <string name="column_start">ColumnStart</string>
+        <string name="column_right">ColumnRight</string>
+        <string name="column_spacing">ColumnSpacing</string>
+        <string name="column_width">ColumnWidth</string>
+        <string name="column_line_width">ColumnLineWidth</string>
+        <string name="barline_height">BarlineHeight</string>
+        <string name="lighting_n_width">LightingNWidth</string>
+        <string name="lighting_l_width">LightingLWidth</string>
+        <string name="width_for_note_height_scale">WidthForNoteHeightScale</string>
+        <string name="hit_position">HitPosition</string>
+        <string name="light_position">LightPosition</string>
+        <string name="score_position">ScorePosition</string>
+        <string name="combo_position">ComboPosition</string>
+        <string name="judgement_line">JudgementLine</string>
+        <string name="light_frame_per_second">LightFramePerSecond</string>
+        <string name="special_style">SpecialStyle</string>
+        <string name="combo_burst_style">ComboBurstStyle</string>
+        <string name="note_body_style">NoteBodyStyle</string>
+        <string name="upside_down">UpsideDown</string>
+        <string name="key_flip_when_upside_down">KeyFlipWhenUpsideDown</string>
+        <string name="note_flip_when_upside_down">NoteFlipWhenUpsideDown</string>
+        <string name="split_stages">SplitStages</string>
+        <string name="stage_separation">StageSeparation</string>
+        <string name="separate_score">SeparateScore</string>
+        <string name="keys_under_notes">KeysUnderNotes</string>
+        <string name="colour_column_line">ColourColumnLine</string>
+        <string name="colour_barline">ColourBarline</string>
+        <string name="colour_judgement_line">ColourJudgementLine</string>
+        <string name="colour_key_warning">ColourKeyWarning</string>
+        <string name="colour_hold">ColourHold</string>
+        <string name="colour_break">ColourBreak</string>
+        <string name="stage_left">StageLeft</string>
+        <string name="stage_right">StageRight</string>
+        <string name="stage_bottom">StageBottom</string>
+        <string name="stage_hint">StageHint</string>
+        <string name="stage_light">StageLight</string>
+        <string name="lighting_n">LightingN</string>
+        <string name="lighting_l">LightingL</string>
+        <string name="warning_arrow">WarningArrow</string>
+        <string name="hit0">Hit0</string>
+        <string name="hit50">Hit50</string>
+        <string name="hit100">Hit100</string>
+        <string name="hit200">Hit200</string>
+        <string name="hit300">Hit300</string>
+        <string name="hit300g">Hit300g</string>
+    </ns>
+    
+    <ns name="prefixes">
+        <string name="colour">Colour</string>
+        <string name="colour_light">ColourLight</string>
+        <string name="key_image">KeyImage</string>
+        <string name="key_image_d">KeyImageD</string>
+        <string name="note_image">NoteImage</string>
+        <string name="note_image_h">NoteImageH</string>
+        <string name="note_image_l">NoteImageL</string>
+        <string name="note_image_t">NoteImageT</string>
+        <string name="note_body_style">NoteBodyStyle</string>
+        <string name="key_flip_when_upside_down">KeyFlipWhenUpsideDown</string>
+        <string name="note_flip_when_upside_down">NoteFlipWhenUpsideDown</string>
+    </ns>
+</resources>
+
