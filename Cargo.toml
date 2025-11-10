@@ -2,7 +2,10 @@
 name = "rosu-skin"
 version = "0.3.0"
 edition = "2021"
-
+description = "A Rust library for parsing osu! skin.ini files"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Glubus/rosu-skin"
+authors = ["Glubus"]
 [lib]
 name = "rosu_skin"
 path = "src/lib.rs"
