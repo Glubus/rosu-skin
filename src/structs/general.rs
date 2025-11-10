@@ -7,7 +7,7 @@ pub struct General {
     pub version: String,
     pub cursor: Cursor,
     pub slider: Slider,
-    pub animation_framerate: i8,
+    pub animation_framerate: i32,
     pub hit_circle_overlay_above_number: bool,
     pub layered_hit_sounds: bool,
     pub combo_burst: ComboBurst,
@@ -34,13 +34,13 @@ impl Default for General {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ComboBurst {
     pub burst_random: bool, // 0 = no, 1 = yes
-    pub custom_burst_sounds: Option<u16>,
+    pub custom_burst_sounds: Vec<u16>, // comma-split list of positive integers
 }
 impl Default for ComboBurst {
     fn default() -> Self {
         Self {
             burst_random: false,
-            custom_burst_sounds: None,
+            custom_burst_sounds: Vec::new(),
         }
     }
 }
